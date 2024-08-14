@@ -18,11 +18,42 @@
                 <p><button class="read-button"><img src="assets/svg/book-open-svgrepo-com.svg" alt="Read" height="25px"></button><button class="remove-button"><img src="assets/svg/trash-xmark-alt-svgrepo-com.svg" alt="Delete" height="25px"></button></p>
                 <p></p>
             </div>
-        <div id="plus-sign">
-            <div class="one"></div>
-            <div class="one-two"></div>
-        </div>
+            <button id="form-open" style="background-color: transparent; border: none;">
+                <div id="plus-sign">
+                    <div class="one"></div>
+                    <div class="one-two"></div>
+                </div>
+            </button>
     </div>
-
+    <div id="form-pop-container">
+        <form action="" id="form-pop">
+            <div id="form-content">
+                <p>Add a new book</p>
+            <div>
+                <label for="title"><strong>Title:</strong>
+                    <input type="text" name="title">
+                </label>
+            </div>
+            <div>
+                <label for="author"><strong>Author:</strong>
+                    <input type="text" name="author">
+                </label>
+            </div>
+            <div>
+                <label for="pages"><strong>Pages:</strong>
+                    <input type="number" name="poages">
+                </label>
+            </div>
+            <div style="display: flex; align-items: center;">
+                <label for="read"><strong>Read:</strong></label>
+                <button id="form-read-button"><img src="assets/svg/book-open-svgrepo-com.svg" alt="Read" height="25px"></button>
+            </div>
+            </div>
+            <div style="width: 100px; display: flex;">
+                <button id="add-book" class="popup-button"><img src="assets/svg/add-svgrepo-com.svg" alt="Add" height="50px" width="50px"></button>
+                <button id="remove-book" class="popup-button"><img src="assets/svg/cancel-svgrepo-com.svg" alt="Add" height="50px" width="50px"></button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
