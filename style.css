@@ -42,6 +42,7 @@ button:hover{
     display: flex;
     padding: 20px;
     align-items: center;
+    flex-wrap: wrap;
 }
 .book{
     height: 300px;
