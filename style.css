@@ -44,11 +44,16 @@ button:hover{
     display: flex;
     padding: 20px;
     align-items: center;
+    
+}
+#bookscontainer{
+    display: flex;
     flex-wrap: wrap;
 }
 .book{
     height: 300px;
     width: auto;
+    min-width: 250px;
     font-size: 20px;
     margin: 20px;
     padding: 30px;
