@@ -1,29 +1,27 @@
 const openBtn = document.getElementById("form-open");
 const closeBtn = document.getElementById("form-close");
-const form = document.getElementById("form-pop-container");
+const formContainer = document.getElementById("form-pop-container");
 
 openBtn.addEventListener("click", () =>{
-    form.classList.add("open");
+    formContainer.classList.add("open");
 });
 closeBtn.addEventListener("click", () =>{
-    form.classList.remove("open");
+    formContainer.classList.remove("open");
 });
 
 
 const booksContainer = document.getElementById("bookscontainer");
 const addBtn = document.getElementById("form-open");
+const form = document.getElementById("form-pop");
+const submitBtn = document.getElementById("add-book");
+
+
 const myLibrary = [
   {
     title:"1984",
     pages:328,
     author:"George Orwell",
     isRead:true
-  },
-  {
-    title:"To Kill a Mockingbird",
-    pages:281,
-    author:"Harper Lee",
-    isRead:false
   },
   {
     title:"The Greate Gatsby",
@@ -47,7 +45,7 @@ const myLibrary = [
 
 ];
 
-function Book(title,pages,author,isRead) {
+function bookList(title,pages,author,isRead) {
   this.title = title;
   this.pages = pages;
   this.author = author;
@@ -88,8 +86,61 @@ function displayBooks(){
     booksContainer.appendChild(addBtn);
   }
 }
-function addBookToLibrary() {
-  // do stuff here
+
+function displayNewBook(Btitle,Bauthor,Bpages){
+  const book = document.createElement("div");
+    book.setAttribute("class","book");
+    
+    const title = document.createElement("p");
+    title.setAttribute("class", "title");
+    title.innerHTML = "<strong>Title:</strong>" + Btitle;
+              
+    const author = document.createElement("p");
+    author.setAttribute("class", "author");
+    author.innerHTML = "<strong>Author:</strong>" + Bauthor;
+    
+    const pages = document.createElement("p");
+    pages.setAttribute("class", "pages");
+    pages.innerHTML = "<strong>Pages:</strong>" + Bpages;
+
+    const status = document.createElement("p");
+    status.setAttribute("class", "read");
+    //status.innerHTML = "<strong>Status:</strong>" + isRead
+
+    const bookButtons = document.createElement("p");
+    bookButtons.setAttribute("class","book-buttons")
+    bookButtons.innerHTML = '<button class="read-button"><img src="assets/svg/book-open-svgrepo-com.svg" alt="Read" height="25px"></button><button class="remove-button"><img src="assets/svg/trash-xmark-alt-svgrepo-com.svg" alt="Delete" height="25px"></button>';
+
+    booksContainer.appendChild(book);
+    book.appendChild(title);
+    book.appendChild(author);
+    book.appendChild(pages);
+    book.appendChild(status);
+    book.appendChild(bookButtons);
+    booksContainer.appendChild(addBtn);
 }
+
+function addBookToLibrary() {
+  const formData = new FormData(form);
+  console.log(formData);
+  const book = new bookList();
+  book.title = formData.get("title");
+  book.author = formData.get("author");
+  book.pages = formData.get("pages");
+  console.log(book.title,book.author,book.pages)
+  myLibrary.push({title:book.title,
+                  pages:book.pages,
+                  author:book.author,
+                  isRead:true});
+  displayNewBook(book.title,book.author,book.pages)     
+  formContainer.classList.remove("open");           
+
+}
+
+
+
+submitBtn.addEventListener("click" , () =>{
+  addBookToLibrary();
+})
 
 displayBooks();
