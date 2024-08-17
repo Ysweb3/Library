@@ -1,12 +1,15 @@
 const openBtn = document.getElementById("form-open");
 const closeBtn = document.getElementById("form-close");
 const formContainer = document.getElementById("form-pop-container");
+const container = document.getElementById("container");
 
 openBtn.addEventListener("click", () =>{
     formContainer.classList.add("open");
+    container.style.filter = "blur(3px)";
 });
 closeBtn.addEventListener("click", () =>{
     formContainer.classList.remove("open");
+    container.style.filter = "none";
 });
 
 
@@ -133,7 +136,8 @@ function addBookToLibrary() {
                   author:book.author,
                   isRead:true});
   displayNewBook(book.title,book.author,book.pages)     
-  formContainer.classList.remove("open");           
+  formContainer.classList.remove("open");
+  container.style.filter = "none";           
 
 }
 
