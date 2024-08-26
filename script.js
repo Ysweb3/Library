@@ -19,6 +19,7 @@ const booksContainer = document.getElementById("bookscontainer");
 const addBtn = document.getElementById("form-open");
 const form = document.getElementById("form-pop");
 const submitBtn = document.getElementById("add-book");
+const readToggle = document.querySelector(".read-button");
 const readBtn = document.getElementById("form-read-button");
 let bookRead = false; 
 readBtn.style.backgroundColor = "red"
@@ -48,16 +49,22 @@ function addBook(){
     book.appendChild(pages);
 
     const read = document.createElement("p");
-    read.setAttribute("class", "pages");
+    read.setAttribute("class", "status");
     if (bookRead == true) {
         read.innerHTML = "<strong>Status:</strong>Read";
     } else {
         read.innerHTML = "<strong>Status:</strong>Not Read";
     }
     book.appendChild(read);
-    
-    
+
+    const bookButtons = document.createElement("p");
+    bookButtons.setAttribute("class","book-buttons")
+    bookButtons.innerHTML = '<button type="button" class="read-button"><img src="assets/svg/book-open-svgrepo-com.svg" alt="Read" height="25px"></button><button type="button" class="remove-button"><img src="assets/svg/trash-xmark-alt-svgrepo-com.svg" alt="Delete" height="25px"></button>';
+    book.appendChild(bookButtons);
+
+
     booksContainer.appendChild(addBtn);
+    booksContainer.addEventListener("click",deleteBook);
 }
 
 
@@ -77,3 +84,13 @@ readBtn.addEventListener("click", () =>{
         bookRead = false
     }
 });
+
+booksContainer.addEventListener("click",deleteBook);
+
+function deleteBook(e){
+    if (e.target.classList.contains("remove-button")) {
+        let div = e.target.parentElement.parentElement;
+        booksContainer.removeChild(div);
+    }
+
+}
